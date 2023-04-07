@@ -1,10 +1,18 @@
-import os
-import sys
+import os, sys
 import pyfiglet
 from termcolor import colored
 import bot as botting
 import subprocess
+import importlib
 
+with open('requirements.txt') as f:
+    required_modules = f.read().splitlines()
+
+for module in required_modules:
+    try:
+        importlib.import_module(module)
+    except ImportError:
+        subprocess.call(['pip', 'install', module])
 ok = False
 username = ""
 
