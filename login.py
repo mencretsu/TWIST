@@ -5,9 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 import json
+import getpass
 from time import sleep
 chromedriver_autoinstaller.install()
-import getpass
 
 def login():
     chrome_options = webdriver.ChromeOptions()
@@ -41,7 +41,7 @@ def login():
             tpass = getpass.getpass(prompt="Password : ")
             driver.get("https://twitter.com/login")
             driver.implicitly_wait(15)
-
+            print("Checking...")
             userinput = driver.find_element(By.NAME, "text")
             userinput.send_keys(tusername)
             userinput.send_keys(Keys.ENTER)
