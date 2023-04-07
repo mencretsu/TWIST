@@ -1,0 +1,4 @@
+snscrape @ git+https://github.com/JustAnotherArchivist/snscrape.git
+termcolor
+selenium
+pyfiglet
