@@ -2,7 +2,7 @@ import os
 import sys
 import pyfiglet
 from termcolor import colored
-from run import scraping, shilling
+from bot import scraping, shilling
 
 ok = False
 username = ""
