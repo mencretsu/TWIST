@@ -1,3 +1,5 @@
 # TWIST
 Twitter Shilling Bot
-[SOON]
+python main.py
+
+required : selenium
