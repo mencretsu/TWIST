@@ -9,8 +9,8 @@ However, the use of Twitter shilling bots is generally considered unethical and 
 
 Installation
 ----------
-Clone the repository:```git clone https://github.com/mencretsu/TWIST```
-Install ```pip install requirements.txt```
+Clone the repository:```git clone https://github.com/mencretsu/TWIST```<br>
+Install ```pip install requirements.txt```<br>
 Run code: ```python main.py```
 
 ![piKiss_01](https://youtu.be/xsVsXImrxrQ)
