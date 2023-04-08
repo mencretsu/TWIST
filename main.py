@@ -1,7 +1,7 @@
 import os, sys
 import pyfiglet
 from termcolor import colored
-import run
+import bot
 import subprocess
 
 tusername = ""
@@ -34,8 +34,8 @@ def run_bot():
         input("\nPress 'ENTER' to go back")
         main_menu()
     
-    run.scraping()
-    run.shilling()
+    bot.scraping()
+    bot.shilling()
 def show_help():
     clear()
     print("Help menu:")
