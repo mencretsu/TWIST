@@ -7,9 +7,10 @@ Using TWIST, a Twitter shilling bot, to promote a cryptocurrency or investment i
 
 Installation
 ----------
-Clone the repository:```git clone https://github.com/mencretsu/TWIST```<br>
-Install ```pip install requirements.txt```<br>
-Run code: ```python main.py```
+• Clone the repository using the command: ```git clone https://github.com/mencretsu/TWIST```<br>
+• Navigate to the TWIST directory using the command: cd ```TWIST```<br>
+• Install the required dependencies by running the command: ```pip install -r requirements.txt``` This will install all the necessary Python packages required to run the tool.<br>
+• Once the dependencies are installed, you can run the TWIST tool by executing the command: ```python main.py```
 
 Demo video
 ----------
