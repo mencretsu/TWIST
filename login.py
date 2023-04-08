@@ -10,6 +10,7 @@ from time import sleep
 chromedriver_autoinstaller.install()
 
 def login():
+    print("Please wait...")
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
     chrome_options.headless = True
