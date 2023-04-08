@@ -13,5 +13,8 @@ Clone the repository:```git clone https://github.com/mencretsu/TWIST```<br>
 Install ```pip install requirements.txt```<br>
 Run code: ```python main.py```
 
-![piKiss_01](https://youtu.be/xsVsXImrxrQ)
-<iframe width="684" height="385" src="https://www.youtube.com/embed/xsVsXImrxrQ" title="Twitter Automatization" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+Demo video
+----------
+
+![](https://telegra.ph/file/17734112ff3ed4c52fb05.gif)<br>
+That's it
