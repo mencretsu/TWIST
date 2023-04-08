@@ -12,7 +12,7 @@ chromedriver_autoinstaller.install()
 def login():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    # chrome_options.headless = True
+    chrome_options.headless = True
     driver = webdriver.Chrome(options=chrome_options)
     try:
         with open('cookies.json', 'r') as f:
@@ -24,16 +24,17 @@ def login():
         wait = WebDriverWait(driver, 20)
         username_element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '[data-testid="AppTabBar_Profile_Link"]')))
         username = username_element.get_attribute("href").split("/")[-1]
-        driver.implicitly_wait(10)
-        warnings = driver.find_elements(By.XPATH, "//*[contains(text(), 'warning')]")
-        errors = driver.find_elements(By.XPATH, "//*[contains(text(), 'error')]")
-        if warnings or errors:
-            print("There may be a problem with your account.")
-            username = ""
-            driver.quit()
-        
-        tusername = str(username)
-        return tusername, driver
+        try:
+            driver.implicitly_wait(10)
+            # errors = driver.find_elements(By.XPATH, "//*[contains(text(), 'error')]")
+            suspension = driver.find_element_by_xpath("//a[contains(@href, 'https://help.twitter.com/forms/general?utm_source=htl&utm_medium=suspension_banner&utm_campaign=suspension_banner_utm')]")
+            if suspension:
+                print("Your account is suspended..")
+                username = ""
+                driver.quit()
+        except:  
+            tusername = str(username)
+            return tusername, driver
     except:
         while True:
             print("Login to Twitter")
@@ -52,7 +53,6 @@ def login():
                 continue
             except:
                 print("email verified")
-
             driver.implicitly_wait(15)
             passinput= driver.find_element(By.NAME, "password")
             passinput.send_keys(tpass)
@@ -63,14 +63,20 @@ def login():
                 print("Error: Invalid password")
                 continue
             except:
-                print("Login successful")
-                cookies = driver.get_cookies()
-                if warnings or errors:
-                    print("There may be a problem with your account.")
-                    username = ""
-                    driver.quit()
-                    break
-                with open('cookies.json', 'w') as f:
-                    json.dump(cookies, f)
-                return tusername, driver
+                try:
+                    driver.implicitly_wait(10)
+                    suspension = driver.find_element(By.XPATH, "//a[contains(@href, 'https://help.twitter.com/forms/general?utm_source=htl&utm_medium=suspension_banner&utm_campaign=suspension_banner_utm')]")
+                    if suspension:
+                        print("Your account is suspended.")
+                        sleep(100)
+                        username = ""
+                        driver.quit()
+                        break
+                except:
+                    cookies = driver.get_cookies()
+                    with open('cookies.json', 'w') as f:
+                        json.dump(cookies, f)
+                        print("Login successful")
+                    tusername = str(username)
+                    return tusername, driver
             
