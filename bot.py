@@ -1,7 +1,7 @@
-# pip3 install git+https://github.com/JustAnotherArchivist/snscrape.git
 import pandas as pd
 import snscrape.modules.twitter as smt
 import json
+import csv
 from time import sleep
 from termcolor import colored
 from selenium.webdriver.common.by import By
@@ -22,19 +22,20 @@ def scraping():
             break
     tweet_df = pd.DataFrame(tweets, columns=["# Twitter url"])
     tweet_df.to_csv("scrape.csv", index=False)
-    print("scraping done")
 def shilling():
     global content
     from login import login
     tusername, driver = login()
+    driver.set_window_size(800, 600)
     total = 0
     with open('scrape.csv', 'r') as f:
         reader = csv.reader(f)
         next(reader)
         links = list(dict.fromkeys(line[0] for line in reader))
+    print("\nRunning...\n")
     for link in links:
         driver.get(link)
-        sleep(60)
+        sleep(10)
         try:
             driver.implicitly_wait(10)
             reply = driver.find_element(By.CSS_SELECTOR,'[data-testid="reply"]')
@@ -48,21 +49,20 @@ def shilling():
                 driver.implicitly_wait(15)
                 driver.find_element(By.XPATH, "//span[normalize-space()='View']").click()
                 myurl = driver.current_url
-                print("- "+str(myurl))
+                print(colored(f"- {myurl}", "blue"))
                 total += 1
             except:
-                warnings = driver.find_elements(By.XPATH, "//*[contains(text(), 'warning')]")
-                errors = driver.find_elements(By.XPATH, "//*[contains(text(), 'error')]")
-                if warnings or errors:
-                    print(colored("There may be a problem with your account.","light_red"))
-                    return
-                driver.refresh()
-                pass
+                try:
+                    driver.implicitly_wait(5)
+                    suspension = driver.find_element(By.XPATH, "//a[contains(@href, 'https://help.twitter.com/forms/general?utm_source=htl&utm_medium=suspension_banner&utm_campaign=suspension_banner_utm')]")
+                    if suspension:
+                        print("Your account is suspended.")
+                        return
+                except:
+                    driver.refresh()
+                    pass
         except(ElementClickInterceptedException, StaleElementReferenceException, WebDriverException, ElementNotInteractableException):
             pass
     print(colored(f"\nTotal sent: {total}","light_green"))
     input("\nPress 'ENTER' to continue")
     driver.quit()
-if __name__ == '__main__':
-    scraping()
-    shilling()
