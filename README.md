@@ -1,7 +1,4 @@
-TWIST - Twitter Shilling Bot
-=============================
-
-TWIST is a simple tool that automates the practice of shilling on Twitter. It is designed to promote a particular cryptocurrency or investment by posting positive comments, retweets, and other engagements on Twitter.
+TWIST - Twitter Shilling Bot is a simple tool that automates the practice of shilling on Twitter. It is designed to promote a particular cryptocurrency or investment by posting positive comments, retweets, and other engagements on Twitter.
 
 Using TWIST, a Twitter shilling bot, to promote a cryptocurrency or investment is unethical, fraudulent, and can mislead investors, leading to significant losses. Twitter and regulatory bodies are taking measures to detect and remove shilling bots.
 
